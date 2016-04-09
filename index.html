@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Intertechno SMS Switch Message Generator</title>
+
+    <link rel="icon" type="image/png" href="img/SmartHomeTechnologyFavicon.png" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>-->
+    <link rel="stylesheet" href="bower_components/angularjs-slider/dist/rzslider.min.css"/>
+    <style>
+        body {
+            /*padding-top: 80px;*/
+        }
+        h1 {
+            margin-bottom: 10px;
+        }
+        @media screen and (min-width: 767px){
+            h1.section {
+                margin-top: 50px;
+            }
+        }
+        table tbody {
+            font-size: 80%;
+        }
+        nav {
+            background-color: #e0e0e0;
+        }
+        footer {
+            margin-top: 100px;
+            padding: 30px 0 30px 0;
+            background-color: #e0e0e0;
+        }
+        input.callback {
+            margin-bottom: 5px;
+        }
+        .sms h2 {
+            font-size: 150%;
+            font-weight: bold;
+            color: #606060;
+        }
+        .sms blockquote {
+            margin-top: 5px;
+            background-color: rgba(250,250,250,200);
+            font-size: 120%;
+            font-family: monospace;
+        }
+        .sms blockquote:before {
+            margin-right: 15px;
+            content: "SMS ";
+            /*font-size: 80%;*/
+            font-weight: bold;
+            color: #c0c0c0;
+        }
+        /**
+         Pretty speech bubble thanks to http://nicolasgallagher.com/pure-css-speech-bubbles/demo/
+        */
+        .example-twitter {
+            position: relative;
+            padding: 15px;
+            margin: 10px 0 0.5em;
+            color: #333;
+            background: #eee;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+        }
+        .example-twitter:after {
+            content: "";
+            position: absolute;
+            top: -30px;
+            left: 70px;
+            border: 15px solid transparent;
+            border-bottom-color: #eee;
+            display: block;
+            width: 0;
+        }
+    </style>
+</head>
+<body ng-controller="controller">
+
+    <div class="container">
+
+        <h1 class="text-muted">Intertechno SMS Switch message Generator</h1>
+        <br/><br/><br/>
+        <br class="hidden-xs"/><br class="hidden-xs"/><br class="hidden-xs"/>
+
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-6">
+                <img src="img/Spacecat.png" style="position:relative; left:30px;"/>
+                <blockquote class="example-twitter">
+                    <p class="lead">Hi there!</p>
+                    <p class="lead">Using this little webapp here you can freely generate all the SMS messages as they are being used in the <a href="http://www.intertechno.at/produkte/smartphone/IT-SMS.html">Intertechno SMS Switch</a>.</p>
+                </blockquote>
+            </div>
+            <div class="col-sm-5 text-center">
+                <br class="visible-xs"/>
+                <a href="https://github.com/smart-home-technology/it-switch-codes-app" style="padding:10px;"><img src="img/GitHub_Logo.png" style="height:50px;"/></a>
+                <a href="https://smart-home-technology.ch" style="padding:10px 40px;"><img src="img/SmartHomeTechnologyGmbH.png" style="height:80px;margin-right: 20px"/></a>
+                <a href="https://smart-home-technology.ch/en/products/consumer/sms-switch" style="padding:10px 40px;"><img src="img/SMSSwitch_Icon.png" style="height:80px;margin-right: 20px"/></a>
+            </div>
+        </div>
+
+        <br/><br/><br/>
+
+        <h1 class="section">Password</h1>
+        <hr/>
+        <div class="row ">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <select ng-model="password.p1" class="form-control input-sm">
+                            <option ng-repeat="l in ISM.PASSWORD_LETTERS" value="{{ l }}">{{ l }}</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-2">
+                        <select ng-model="password.p2" class="form-control input-sm">
+                            <option ng-repeat="l in ISM.PASSWORD_LETTERS" value="{{ l }}">{{ l }}</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-2">
+                        <select ng-model="password.p3" class="form-control input-sm">
+                            <option ng-repeat="l in ISM.PASSWORD_LETTERS" value="{{ l }}">{{ l }}</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-2">
+                        <select ng-model="password.p4" class="form-control input-sm">
+                            <option ng-repeat="l in ISM.PASSWORD_LETTERS" value="{{ l }}">{{ l }}</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-2">
+                        <select ng-model="password.p5" class="form-control input-sm">
+                            <option ng-repeat="l in ISM.PASSWORD_NUMBERS" value="{{ l }}">{{ l }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <p>Please enter the password you are using for your gateway. This will be used later when sending commands to any of your receivers or when storing the timer configuration.</p>
+            </div>
+        </div>
+
+
+        <h1 class="section">Feedback</h1>
+        <hr/>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class=" text-center">
+                    <label>
+                        <input ng-model="callbacks.enabled" type="checkbox"/> Enable feedback messages
+                    </label>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <input ng-model="callbacks.c1" placeholder="1st mobile number" type="tel" maxlength="20" class="form-control input-sm callback text-center"/>
+                    </div>
+                    <div class="col-sm-4">
+                        <input ng-model="callbacks.c2" placeholder="2nd mobile number" type="tel" ng-maxlength="20" class="form-control input-sm callback text-center"/>
+                    </div>
+                    <div class="col-sm-4">
+                        <input ng-model="callbacks.c3" placeholder="3rd mobile number" type="tel" ng-maxlength="20" class="form-control input-sm callback text-center"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <p>Using this message format you can enable or disable the callback settings.</p>
+                <p><em>PLEASE NOTE</em> that you are expected to provide valid mobile numbers which a maximum length of 20 digits.</p>
+            </div>
+        </div>
+        <br/><br/>
+        <div class="sms">
+            <blockquote ng-bind-html="sms(callbacks.command())">
+            </blockquote>
+        </div>
+
+
+        <h1 class="section">Module</h1>
+        <hr/>
+
+        <div class="row ">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="form-group text-center">
+                            <label>
+                                <input ng-model="module.type" ng-value="ISM.CODE_TYPE_WHEEL" type="radio"/> Codewheel
+                            </label>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-xs-6">
+                                <select ng-model="module.wheelLetter" class="form-control input-sm"  ng-disabled="module.type != ISM.CODE_TYPE_WHEEL">
+                                    <option ng-repeat="l in ISM.WHEEL_LETTERS" value="{{ l }}">{{ l }}</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6">
+                                <select ng-model="module.wheelNumber" class="form-control input-sm" ng-disabled="module.type != ISM.CODE_TYPE_WHEEL">
+                                    <option ng-repeat="l in ISM.WHEEL_NUMBERS" value="{{ l }}">{{ l }}</option>
+                                </select>
+                            </div>
+                            <br/><br/>
+                        </div>
+                    </div>
+                    <div class="col-sm-offset-1 col-sm-5">
+                        <div class="form-group text-center">
+                            <label>
+                                <input  ng-model="module.type" ng-value="ISM.CODE_TYPE_LEARN" type="radio"/> Learncode
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <select ng-model="module.learnNumber" class="form-control input-sm" ng-disabled="module.type != ISM.CODE_TYPE_LEARN">
+                                <option ng-repeat="l in ISM.LEARN_NUMBERS" value="{{ l }}">{{ l }}</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <rzslider
+                                    rz-slider-model="module.dimLevelSlider.value"
+                                    rz-slider-options="module.dimLevelSlider" ng-disabled="module.type != ISM.CODE_TYPE_LEARN"/>
+                        </div>
+                        <p class="help-block">Use this slider to set the dim level of the receiver.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <p>Please pick the type of receiver you have - either a codewheel based or using a learncode - and after setting up its options below you will find the commands that would be necessary to set the receiver accordingly.</p>
+                <div class="sms">
+                    <h2>ON command</h2>
+                    <blockquote>
+                        <span ng-show="module.on()">{{ module.on() }}</span>
+                    </blockquote>
+                </div>
+                <div class="sms">
+                    <h2>OFF command</h2>
+                    <blockquote>
+                        <span ng-show="module.off()">{{ module.off() }}</span>
+                    </blockquote>
+                </div>
+                <div class="sms">
+                    <h2>DIM command</h2>
+                    <blockquote>
+                        <span ng-show="module.type == ISM.CODE_TYPE_LEARN">{{ module.dim() }}</span>
+                        <span ng-hide="module.type == ISM.CODE_TYPE_LEARN" style="font-style:italic; font-size: 14px;">Only modules using learncodes are dimmable! (and not all of them)</span>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+
+
+        <h1 class="section">Timers</h1>
+        <hr/>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <h3 style="margin-top:0">Day & Time Synchronization</h3>
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">Weekday</label>
+                        <div class="col-sm-3">
+                            <select ng-model="timers.sync.weekday" class="form-control">
+                                <option ng-repeat="value in timers.weekdays" ng-value="$index" ng-selected="$index == timers.sync.weekday">{{ value }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">Time</label>
+                        <div class="col-sm-3">
+                            <input ng-model="timers.sync.time" type="time" class="form-control text-center"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button ng-click="timers.sync.now()" class="btn btn-info btn-sm">Set to now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <p>If timers are configured on the SMS Switch then it will autonomously send the configured codes on the specified days and times.</p>
+                <p>Please also note that the day and time has to be given for the timers to trigger on the correct day and times.</p>
+            </div>
+        </div>
+
+
+        <h3>
+            List
+            <small>
+                Total: {{timers.list.length}}
+            </small>
+        </h3>
+        <button ng-click="timers.add()" class="btn btn-success btn-sm" ng-disabled="timers.list.length >= timers.max"><i class="glyphicon glyphicon-plus"></i> Add Timer</button>
+        <small ng-show="timers.list.length >= timers.max" class="text-warning">You already have the maximum amount of {{timers.max}} allowed timers.</small>
+        <br/><br/>
+
+        <div ng-show="timers.list.length == 0" class="well well-sm text-center text-warning">
+            You do not have any timers created yet.
+        </div>
+        <div ng-show="timers.list.length" class="row">
+            <div class="col-md-6 form-horizontal" ng-repeat="timer in timers.list">
+                <div  class="">
+                    <h4>
+                        Timer {{ $index+1 }}
+                        <small style="margin-left: 20px;">
+                            <a ng-click="timers.remove($index)" class="text-danger"><i class="glyphicon glyphicon-remove"></i> Remove</a>
+                        </small>
+                    </h4>
+                    <hr/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">ON time</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <label class="input-group-addon">
+                                    <input ng-model="timer.onEnabled" ng-change="timers.changedTimes($index)" type="checkbox"/>
+                                </label>
+                                <input type="text" size="8" ng-model="timer.onTimeDate" ng-change="timers.changedTimes($index)" placeholder="Time" class="form-control" ng-disabled="!timer.onEnabled" bs-timepicker data-time-format="HH:mm" data-length="1" data-minute-step="1" data-arrow-behavior="picker">
+                            </div>
+                        </div>
+                        <label class="col-sm-2 control-label">OFF time</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <label class="input-group-addon">
+                                    <input ng-model="timer.offEnabled" ng-change="timers.changedTimes($index)" type="checkbox"/>
+                                </label>
+                                <input type="text" size="8" ng-model="timer.offTimeDate" ng-change="timers.changedTimes($index)" placeholder="Time" class="form-control" ng-disabled="!timer.offEnabled" bs-timepicker data-time-format="HH:mm" data-length="1" data-minute-step="1" data-arrow-behavior="picker">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Days</label>
+                        <div class="col-sm-10">
+                            <div class="checkbox-inline">
+                                <label>
+                                    <input ng-model="timer.weekdayBools.mon" ng-change="timers.changedWeekday($index,'mon')" type="checkbox"> Monday
+                                </label>
+                            </div>
+                            <div class="checkbox-inline">
+                                <label>
+                                    <input ng-model="timer.weekdayBools.tue" ng-change="timers.changedWeekday($index,'mon')"  type="checkbox"> Tuesday
+                                </label>
+                            </div>
+                            <div class="checkbox-inline">
+                                <label>
+                                    <input ng-model="timer.weekdayBools.wed"  ng-change="timers.changedWeekday($index,'mon')" type="checkbox"> Wednesday
+                                </label>
+                            </div>
+                            <div class="checkbox-inline">
+                                <label>
+                                    <input ng-model="timer.weekdayBools.thu" ng-change="timers.changedWeekday($index,'mon')"  type="checkbox"> Thursday
+                                </label>
+                            </div>
+                            <div class="checkbox-inline">
+                                <label>
+                                    <input ng-model="timer.weekdayBools.fri" ng-change="timers.changedWeekday($index,'mon')"  type="checkbox"> Friday
+                                </label>
+                            </div>
+                            <div class="checkbox-inline">
+                                <label>
+                                    <input ng-model="timer.weekdayBools.sat" ng-change="timers.changedWeekday($index,'mon')"  type="checkbox"> Saturday
+                                </label>
+                            </div>
+                            <div class="checkbox-inline">
+                                <label>
+                                    <input ng-model="timer.weekdayBools.sun" ng-change="timers.changedWeekday($index,'mon')"  type="checkbox"> Sunday
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Options</label>
+                        <div class="col-sm-10">
+                            <div class="checkbox-inline">
+                                <label>
+                                    <input ng-model="timer.repeat" type="checkbox"/> Repeat
+                                </label>
+                            </div>
+                            <div class="checkbox-inline">
+                                <label>
+                                    <input ng-model="timer.randomize" type="checkbox"/> Randomize
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Module</label>
+                        <div class="col-sm-3">
+                            <div class="radio">
+                                <label>
+                                    <input ng-model="timer.module.type" ng-value="ISM.CODE_TYPE_WHEEL" type="radio"> Codewheel
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 form-inline">
+                            <select ng-model="timer.module.wheelLetter" class="form-control" ng-disabled="timer.module.type != ISM.CODE_TYPE_WHEEL">
+                                <option ng-repeat="l in ISM.WHEEL_LETTERS" value="{{ l }}">{{ l }}</option>
+                            </select>
+                            <select ng-model="timer.module.wheelNumber" class="form-control" ng-disabled="timer.module.type != ISM.CODE_TYPE_WHEEL">
+                                <option ng-repeat="l in ISM.WHEEL_NUMBERS" value="{{ l }}">{{ l }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-3">
+                            <div class="radio">
+                                <label>
+                                    <input ng-model="timer.module.type" ng-value="ISM.CODE_TYPE_LEARN" type="radio"> Learncode
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 form-inline">
+                            <select ng-model="timer.module.learnNumber" class="form-control" ng-disabled="timer.module.type != ISM.CODE_TYPE_LEARN">
+                                <option ng-repeat="l in ISM.LEARN_NUMBERS" value="{{ l }}">{{ l }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <hr/>
+            </div>
+        </div>
+
+        <br/><br/>
+
+        <div class="sms">
+            <blockquote ng-bind-html="sms(timers.command())">
+            </blockquote>
+        </div>
+
+
+    </div><!-- /.container -->
+
+
+    <footer>
+        <div class="container">
+            <small>
+                <p>The MIT License</p>
+
+                <p>Copyright (c) 2016 <a href="https://smart-home-technology.ch">Smart Home Technology GmbH</a></p>
+
+                <p>Permission is hereby granted, free of charge, to any person obtaining a copy
+                    of this software and associated documentation files (the "Software"), to deal
+                    in the Software without restriction, including without limitation the rights
+                    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+                    copies of the Software, and to permit persons to whom the Software is
+                    furnished to do so, subject to the following conditions:</p>
+
+                <p>The above copyright notice and this permission notice shall be included in
+                    all copies or substantial portions of the Software.</p>
+
+                <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+                    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+                    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+                    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+                    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+                    THE SOFTWARE.</p>
+            </small>
+        </div>
+    </footer>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <!--<script src="bower_components/angular/angular.min.js"></script>-->
+    <script src="bower_components/angularjs-slider/dist/rzslider.min.js"></script>
+    <script src="bower_components/angular-strap/dist/angular-strap.min.js"></script>
+    <script src="bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
+    <script src="js/IntertechnoSwitchMessenger.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
