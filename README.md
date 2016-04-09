@@ -1,6 +1,7 @@
 Using this little webapp here you can freely generate all the SMS messages as they are being used in the [Intertechno SMS Switch](http://www.intertechno.at/produkte/smartphone/IT-SMS.html).
 
-Please also see the [live app](https://smart-home-technology.github.io/it-switch-codes-app).
+
+### Please also see the [live app](https://smart-home-technology.github.io/it-switch-codes-app).
 
 
 
