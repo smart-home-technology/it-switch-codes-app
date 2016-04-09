@@ -145,6 +145,9 @@ app.controller("controller", function ($scope, $sce) {
             var timer = this.list[i];
             timer.weekdays = timer.weekdayBools.asArray();
         },
+        filterLearncodes: function(learnNumber){
+            return parseInt(learnNumber) != 16;
+        },
         command: function(){
             return IntertechnoSwitchMessenger.Command.timers(this.list,$scope.password.asString(), this.sync.asDate());
         }

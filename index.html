@@ -414,7 +414,7 @@
                         </div>
                         <div class="col-sm-6 form-inline">
                             <select ng-model="timer.module.learnNumber" class="form-control" ng-disabled="timer.module.type != ISM.CODE_TYPE_LEARN">
-                                <option ng-repeat="l in ISM.LEARN_NUMBERS" value="{{ l }}">{{ l }}</option>
+                                <option ng-repeat="l in ISM.LEARN_NUMBERS | filter:timers.filterLearncodes" value="{{ l }}">{{ l }}</option>
                             </select>
                         </div>
                     </div>

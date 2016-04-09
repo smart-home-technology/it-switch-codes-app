@@ -137,6 +137,10 @@ var IntertechnoSwitchMessenger = (function () {
                     break;
 
                 case ISM.CODE_TYPE_LEARN:
+                    if (parseInt(module.learnNumber) == 16){
+                        console.error("Timers that serve learncode receivers can not use the index 16!");
+                        return null;
+                    }
                     code = twoDigitNumberString(module.learnNumber) + '*';
                     break;
 
