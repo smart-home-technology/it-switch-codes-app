@@ -1,14 +1,20 @@
+## Intertechno SMS Switch Message Generator
+
+![SMS Switch](https://smart-home-technology.github.io/it-switch-codes-app/img/SMSSwitch_Icon.png) ![Smart Home Technology GmbH](https://smart-home-technology.github.io/it-switch-codes-app/img/SmartHomeTechnologyGmbH.png)
+
 ### See the [live app](https://smart-home-technology.github.io/it-switch-codes-app).
 
-Using this little webapp here you can freely generate all the SMS messages as they are being used in the [Intertechno SMS Switch](http://www.intertechno.at/produkte/smartphone/IT-SMS.html).
+Using this little webapp here you can freely generate all the SMS messages as they are being used in the [Intertechno SMS Switch](https://smart-home-technology.ch/en/products/consumer/sms-switch).
 
 Essentially it provides an encoding javascript module - which you could use on its own (see [js/IntertechnoSwitchMessenger.js](https://github.com/smart-home-technology/it-switch-codes-app/blob/master/js/IntertechnoSwitchMessenger.js)) - or together with the web-frontend. The former might be interesting to use in combination with an app of your own.
 
+As an interesting sidenote: the generated commands can also be used in conjuction with the [Intertechno BT Switch](https://smart-home-technology.ch/en/products/consumer/bt-switch) but this gateway relies on a different and less easily-accessible communication interface (bluetooth that is).
+
+This source code is happily provided by [Smart Home Technology GmbH](https://smart-home-technology.ch).
 
 
 
-
-******
+***
 _MIT License_
 
 Copyright (c) 2016 Smart Home Technology GmbH
