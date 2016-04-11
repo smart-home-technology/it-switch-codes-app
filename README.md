@@ -4,7 +4,11 @@
 
 ### See the [live app](https://smart-home-technology.github.io/it-switch-codes-app).
 
-Using this little webapp here you can freely generate all the SMS messages as they are being used in the [Intertechno SMS Switch](https://smart-home-technology.ch/en/products/consumer/sms-switch).
+Using this little webapp here you can freely generate all the SMS messages as they are being used in the [Intertechno SMS Switch](https://smart-home-technology.ch/en/products/consumer/sms-switch). Messages that can be generated are as follows:
+
+ - On/Off/Dim commands for receivers
+ - Turn on/off feedback and save feedback numbers
+ - Set timers that run autonomously on gateway
 
 Essentially it provides an encoding javascript module - which you could use on its own (see [js/IntertechnoSwitchMessenger.js](https://github.com/smart-home-technology/it-switch-codes-app/blob/master/js/IntertechnoSwitchMessenger.js)) - or together with the web-frontend. The former might be interesting to use in combination with an app of your own.
 
